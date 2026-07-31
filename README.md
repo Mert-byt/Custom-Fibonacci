@@ -33,5 +33,5 @@ Open-source and free to use, modify, and share
 
 <img width="752" height="603" alt="Screenshot_2026-07-31_15-49-38" src="https://github.com/user-attachments/assets/b8912361-f322-42ec-9488-4f83c0a1f500" />
 
-<img width="240" height="240" alt="Custom-Fibonacci" src="https://github.com/user-attachments/assets/9d9f5f7b-405e-47d8-b3a9-4e3b54931f08" />
+<img width="480" height="480" alt="Custom-Fibonacci" src="https://github.com/user-attachments/assets/9d9f5f7b-405e-47d8-b3a9-4e3b54931f08" />
 
