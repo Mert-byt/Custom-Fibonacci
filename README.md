@@ -1,3 +1,6 @@
+<img width="1346" height="676" alt="Screenshot_2026-07-31_21-47-45" src="https://github.com/user-attachments/assets/7618d3a5-c969-4690-a7b5-52a63ceb1a91" />
+
+
 Custom Fibonacci
 
 A clean and precise open-source Pine Script indicator designed for traders who use ICT / Smart Money Concepts.
@@ -9,6 +12,8 @@ Key Levels
 1 → Swing Low
 1.47 / 1.51 / 1.55 → Primary Standard Deviation targets
 2.56 / 2.60 / 2.64 → Extended targets
+
+<img width="752" height="547" alt="image" src="https://github.com/user-attachments/assets/4cbae367-2037-4257-b2dd-7e2b24ba91c8" />
 
 Features
 
@@ -29,10 +34,6 @@ Notes
 
 This indicator is intended as a discretionary tool. It does not generate buy/sell signals. Always combine it with proper market structure, liquidity analysis, and risk management.
 Open-source and free to use, modify, and share
-
-
-<img width="752" height="547" alt="image" src="https://github.com/user-attachments/assets/4cbae367-2037-4257-b2dd-7e2b24ba91c8" />
-
 
 
 <img width="752" height="603" alt="Custom-Fibo" src="https://github.com/user-attachments/assets/4e163fc7-1bba-45d0-a520-108317112c62" />
