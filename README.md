@@ -36,4 +36,4 @@ This indicator is intended as a discretionary tool. It does not generate buy/sel
 Open-source and free to use, modify, and share
 
 
-<img width="752" height="603" alt="Custom-Fibo" src="https://github.com/user-attachments/assets/4e163fc7-1bba-45d0-a520-108317112c62" />
+<img width="752" height="300" alt="Custom-Fibo" src="https://github.com/user-attachments/assets/4e163fc7-1bba-45d0-a520-108317112c62" />
