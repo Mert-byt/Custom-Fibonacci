@@ -1,0 +1,104 @@
+// This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Mertapp
+
+//@version=6
+indicator("Custom Fibonacci (Judas) ", overlay = true, max_lines_count = 50, max_labels_count = 50)
+
+// ══════════════════════════════════════════════════════════════
+// SETTINGS
+// ══════════════════════════════════════════════════════════════
+pivotLen        = input.int(5, "Pivot Length", minval = 2, maxval = 50)
+extendBars      = input.int(30, "Line Extension (bars)", minval = 5)
+showNegative    = input.bool(true, "Show Negative Levels (-0.29 / -0.255 / -0.21)")
+showZeroOne     = input.bool(true, "Show 0 and 1 Levels")
+showExtensions  = input.bool(true, "Show Extension Levels (1.47+)")
+lineWidth       = input.int(1, "Line Width", minval = 1, maxval = 3)
+
+// Colors
+colNeg     = input.color(color.new(#8f3939, 0), "Negative Levels Color")
+colZeroOne = input.color(color.new(#364b5c, 0), "0 / 1 Levels Color")
+colExt     = input.color(color.new(#19521b, 0), "Extension Levels Color")
+
+// ══════════════════════════════════════════════════════════════
+// PIVOT DETECTION
+// ══════════════════════════════════════════════════════════════
+ph = ta.pivothigh(high, pivotLen, pivotLen)
+pl = ta.pivotlow(low, pivotLen, pivotLen)
+
+var float swingHighPrice = na
+var int   swingHighBar   = na
+var float swingLowPrice  = na
+var int   swingLowBar    = na
+
+// Save new Pivot High
+if not na(ph)
+    swingHighPrice := ph
+    swingHighBar   := bar_index - pivotLen
+    // Reset Low when a new High is found (waiting for new structure)
+    swingLowPrice  := na
+    swingLowBar    := na
+
+// Save Pivot Low that forms after the High
+if not na(pl) and not na(swingHighPrice) and (bar_index - pivotLen > swingHighBar)
+    swingLowPrice := pl
+    swingLowBar   := bar_index - pivotLen
+
+// ══════════════════════════════════════════════════════════════
+// FIBONACCI PRICE CALCULATION
+// ══════════════════════════════════════════════════════════════
+f_fibPrice(float highP, float lowP, float level) =>
+    highP - (highP - lowP) * level
+
+// ══════════════════════════════════════════════════════════════
+// LINE MANAGEMENT
+// ══════════════════════════════════════════════════════════════
+var array<line> fibLines = array.new_line()
+
+f_clearAll() =>
+    if array.size(fibLines) > 0
+        for ln in fibLines
+            line.delete(ln)
+        array.clear(fibLines)
+
+// ══════════════════════════════════════════════════════════════
+// DRAWING
+// ══════════════════════════════════════════════════════════════
+if not na(swingHighPrice) and not na(swingLowPrice) and swingHighPrice > swingLowPrice
+    f_clearAll()
+
+    // Level list
+    var float[] levels = array.from(-0.29, -0.255, -0.21, 0.0, 1.0, 1.47, 1.51, 1.55, 2.56, 2.6, 2.64)
+
+    for i = 0 to array.size(levels) - 1
+        float lvl = array.get(levels, i)
+
+        // Display filters
+        bool showThis = false
+        color lineCol = colZeroOne
+
+        if lvl < 0
+            showThis := showNegative
+            lineCol  := colNeg
+        else if lvl == 0 or lvl == 1
+            showThis := showZeroOne
+            lineCol  := colZeroOne
+        else
+            showThis := showExtensions
+            lineCol  := colExt
+
+        if showThis
+            float price = f_fibPrice(swingHighPrice, swingLowPrice, lvl)
+
+            // Draw line only (no labels)
+            line ln = line.new(
+                 x1 = swingHighBar,
+                 y1 = price,
+                 x2 = bar_index + extendBars,
+                 y2 = price,
+                 xloc = xloc.bar_index,
+                 extend = extend.none,
+                 color = lineCol,
+                 width = lineWidth,
+                 style = line.style_solid)
+
+            array.push(fibLines, ln)
