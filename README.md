@@ -34,4 +34,4 @@ Open-source and free to use, modify, and share
 <img width="752" height="603" alt="Screenshot_2026-07-31_15-49-38" src="https://github.com/user-attachments/assets/b8912361-f322-42ec-9488-4f83c0a1f500" />
 
 
-<img width="2752" height="1152" alt="Custom-Fibo" src="https://github.com/user-attachments/assets/4e163fc7-1bba-45d0-a520-108317112c62" />
+<img width="752" height="1152" alt="Custom-Fibo" src="https://github.com/user-attachments/assets/4e163fc7-1bba-45d0-a520-108317112c62" />
