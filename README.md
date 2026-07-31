@@ -29,3 +29,5 @@ Notes
 
 This indicator is intended as a discretionary tool. It does not generate buy/sell signals. Always combine it with proper market structure, liquidity analysis, and risk management.
 Open-source and free to use, modify, and share
+
+<img width="752" height="603" alt="Screenshot_2026-07-31_15-48-41" src="https://github.com/user-attachments/assets/94c537c2-bde5-4d35-a75c-d6787fb77374" />
