@@ -31,7 +31,7 @@ This indicator is intended as a discretionary tool. It does not generate buy/sel
 Open-source and free to use, modify, and share
 
 
-<img width="827" height="547" alt="image" src="https://github.com/user-attachments/assets/4cbae367-2037-4257-b2dd-7e2b24ba91c8" />
+<img width="752" height="547" alt="image" src="https://github.com/user-attachments/assets/4cbae367-2037-4257-b2dd-7e2b24ba91c8" />
 
 
 
