@@ -30,5 +30,8 @@ Notes
 This indicator is intended as a discretionary tool. It does not generate buy/sell signals. Always combine it with proper market structure, liquidity analysis, and risk management.
 Open-source and free to use, modify, and share
 
+<img width="1080" height="1080" alt="Custom-Fibonacci" src="https://github.com/user-attachments/assets/9d9f5f7b-405e-47d8-b3a9-4e3b54931f08" />
+
+
 <img width="752" height="603" alt="Screenshot_2026-07-31_15-49-38" src="https://github.com/user-attachments/assets/b8912361-f322-42ec-9488-4f83c0a1f500" />
 
