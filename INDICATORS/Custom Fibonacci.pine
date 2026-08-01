@@ -2,7 +2,7 @@
 // © Mertapp
 
 //@version=6
-indicator("Custom Fibonacci", overlay = true, max_lines_count = 500, max_labels_count = 500)
+indicator("Custom Fibonacci by SlyTrader", overlay = true, max_lines_count = 500, max_labels_count = 500)
 
 // ══════════════════════════════════════════════════════════════
 // SETTINGS
