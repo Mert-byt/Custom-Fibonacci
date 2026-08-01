@@ -1,5 +1,4 @@
-<img width="1346" height="676" alt="Screenshot_2026-07-31_21-47-45" src="https://github.com/user-attachments/assets/7618d3a5-c969-4690-a7b5-52a63ceb1a91" />
-
+<img width="1346" height="676" alt="Screenshot_2026-08-01_16-06-43" src="https://github.com/user-attachments/assets/a00a459f-707d-4bc9-80bd-56139bd6517a" />
 
 Custom Fibonacci
 
