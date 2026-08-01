@@ -13,7 +13,9 @@ Key Levels
 1.47 / 1.51 / 1.55 → Primary Standard Deviation targets
 2.56 / 2.60 / 2.64 → Extended targets
 
-<img width="752" height="547" alt="image" src="https://github.com/user-attachments/assets/4cbae367-2037-4257-b2dd-7e2b24ba91c8" />
+<img width="376" height="273" alt="image" src="https://github.com/user-attachments/assets/4cbae367-2037-4257-b2dd-7e2b24ba91c8" />
+<img width="376" height="273" alt="image" src="https://github.com/user-attachments/assets/56965471-eef4-48e4-933c-dfcfb39e45ff" />
+
 
 Features
 
