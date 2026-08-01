@@ -1,0 +1,155 @@
+// This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Mertapp
+
+//@version=6
+indicator("Custom Fibonacci", overlay = true, max_lines_count = 500, max_labels_count = 500)
+
+// ══════════════════════════════════════════════════════════════
+// SETTINGS
+// ══════════════════════════════════════════════════════════════
+pivotLen        = input.int(5, "Pivot Length", minval = 2, maxval = 50)
+extendBars      = input.int(30, "Line Extension (bars)", minval = 5, maxval = 200)
+showNegative    = input.bool(true, "Show Negative Levels (-0.29 / -0.255 / -0.21)")
+showZeroOne     = input.bool(true, "Show 0 and 1 Levels")
+showExtensions  = input.bool(true, "Show Extension Levels (1.47+)")
+lineWidth       = input.int(2, "Line Width", minval = 1, maxval = 4)
+showLabels      = input.bool(true, "Show Entry / EQ Labels Only")
+labelSize       = input.string("small", "Label Size", options = ["tiny", "small", "normal"])
+
+// Colors
+colNeg     = input.color(color.new(#8B1E2D, 10), "Negative Levels (Light Burgundy)")
+colZeroOne = input.color(color.new(#464858, 10), "0 / 1 Levels (Deep Blue)")
+colExt     = input.color(color.new(#1B5E20, 10), "Extension Levels (Dark Green)")
+
+// ══════════════════════════════════════════════════════════════
+// PIVOT DETECTION
+// ══════════════════════════════════════════════════════════════
+ph = ta.pivothigh(high, pivotLen, pivotLen)
+pl = ta.pivotlow(low, pivotLen, pivotLen)
+
+var float lastHighPrice = na
+var int   lastHighBar   = na
+var float lastLowPrice  = na
+var int   lastLowBar    = na
+
+if not na(ph)
+    lastHighPrice := ph
+    lastHighBar   := bar_index - pivotLen
+
+if not na(pl)
+    lastLowPrice := pl
+    lastLowBar   := bar_index - pivotLen
+
+// Determine market structure
+bool hasBothPivots = not na(lastHighPrice) and not na(lastLowPrice)
+bool isBearish = hasBothPivots and (lastHighBar < lastLowBar)
+bool isBullish = hasBothPivots and (lastLowBar < lastHighBar)
+
+float swingA_price = isBearish ? lastHighPrice : isBullish ? lastLowPrice : na
+int   swingA_bar   = isBearish ? lastHighBar : isBullish ? lastLowBar : na
+float swingB_price = isBearish ? lastLowPrice : isBullish ? lastHighPrice : na
+int   swingB_bar   = isBearish ? lastLowBar : isBullish ? lastHighBar : na
+
+// ══════════════════════════════════════════════════════════════
+// SWING CHANGE TRACKING
+// ══════════════════════════════════════════════════════════════
+var int lastSwingId = 0
+int currentSwingId = (isBearish or isBullish) ? (swingA_bar * 10000 + swingB_bar) : 0
+bool swingChanged = currentSwingId != lastSwingId and currentSwingId != 0
+
+if swingChanged
+    lastSwingId := currentSwingId
+
+// ══════════════════════════════════════════════════════════════
+// LINE & LABEL MANAGEMENT
+// ══════════════════════════════════════════════════════════════
+var array<line> fibLines = array.new_line()
+var array<label> fibLabels = array.new_label()
+
+f_clearAll() =>
+    if array.size(fibLines) > 0
+        for ln in fibLines
+            line.delete(ln)
+        array.clear(fibLines)
+    if array.size(fibLabels) > 0
+        for lbl in fibLabels
+            label.delete(lbl)
+        array.clear(fibLabels)
+
+// ══════════════════════════════════════════════════════════════
+// FIBONACCI CALCULATION
+// ══════════════════════════════════════════════════════════════
+f_fibPrice(float a, float b, float level, bool bearish) =>
+    bearish ? a - (a - b) * level : a + (b - a) * level
+
+// ══════════════════════════════════════════════════════════════
+// LEVELS CONFIGURATION
+// ══════════════════════════════════════════════════════════════
+var float[] levels = array.from(-0.29, -0.255, -0.21, 0.0, 1.0, 1.47, 1.51, 1.55, 2.56, 2.6, 2.64)
+var string[] labels = array.from("SL", "Deep SL", "Inv", "Entry", "EQ", "TP1", "TP2", "TP3", "TP4", "TP5", "TP6")
+
+// ══════════════════════════════════════════════════════════════
+// DRAWING
+// ══════════════════════════════════════════════════════════════
+if swingChanged and (isBearish or isBullish)
+    f_clearAll()
+
+    for i = 0 to array.size(levels) - 1
+        float lvl = array.get(levels, i)
+        string txt = array.get(labels, i)
+
+        bool showThis = false
+        color lineCol = colZeroOne
+
+        if lvl < 0
+            showThis := showNegative
+            lineCol  := colNeg
+        else if lvl == 0.0 or lvl == 1.0
+            showThis := showZeroOne
+            lineCol  := colZeroOne
+        else
+            showThis := showExtensions
+            lineCol  := colExt
+
+        if showThis
+            float price = f_fibPrice(swingA_price, swingB_price, lvl, isBearish)
+
+            line ln = line.new(
+                 x1 = swingA_bar,
+                 y1 = price,
+                 x2 = bar_index + extendBars,
+                 y2 = price,
+                 xloc = xloc.bar_index,
+                 extend = extend.none,
+                 color = lineCol,
+                 width = lineWidth,
+                 style = line.style_solid)
+
+            array.push(fibLines, ln)
+
+            // Only show labels for Entry (0.0) and EQ (1.0)
+            if showLabels and (lvl == 0.0 or lvl == 1.0)
+                label lbl = label.new(
+                     x = bar_index + extendBars,
+                     y = price,
+                     text = txt + " | " + str.tostring(price, format.mintick),
+                     xloc = xloc.bar_index,
+                     yloc = yloc.price,
+                     color = color.new(color.black, 50),
+                     textcolor = lineCol,
+                     style = label.style_label_left,
+                     size = labelSize == "tiny" ? size.tiny : labelSize == "small" ? size.small : size.normal)
+                
+                array.push(fibLabels, lbl)
+
+// ══════════════════════════════════════════════════════════════
+// EXTEND EXISTING LINES ON NEW BARS
+// ══════════════════════════════════════════════════════════════
+if not swingChanged and array.size(fibLines) > 0
+    for i = 0 to array.size(fibLines) - 1
+        ln = array.get(fibLines, i)
+        line.set_x2(ln, bar_index + extendBars)
+    
+    for i = 0 to array.size(fibLabels) - 1
+        lbl = array.get(fibLabels, i)
+        label.set_x(lbl, bar_index + extendBars)
