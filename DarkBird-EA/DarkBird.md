@@ -133,25 +133,59 @@ different market conditions (news flow, liquidity sessions, broker execution qua
 
 ## 7. Backtest Findings — Equity Curve Analysis
 
+### 7.1 Test Parameters
+
+| Parameter | Value |
+|---|---|
+| Instrument | XAUUSD |
+| Timeframe | M1 |
+| Test duration | 1 month |
+| Initial capital | $5,000.00 |
+| Leverage | 1:15 |
+| Ending equity | $11,212.00 |
+| Net profit | $6,212.00 |
+| Return on initial capital | +124.24% |
+
+### 7.2 Equity Curve Observations
+
 The following observations are based on a visual review of the Strategy Tester equity/balance
 chart provided:
 
-- **Overall trend:** Throughout the test period, the equity curve exhibits a stepped ("staircase")
-  upward pattern without a sustained decline, with extended consolidation (sideways) phases
-  followed by pronounced breakout advances.
-- **Balance–equity convergence:** The green (equity) and blue (balance) lines largely overlap
-  throughout the test, suggesting that the floating profit/loss amplitude of open positions
-  remained limited and that positions were closed relatively quickly — consistent with the EA's
-  early-exit and trailing/breakeven mechanisms.
-- **Drawdowns:** Periodic minor pullbacks are observed, but none are large enough to interrupt the
-  overall upward trend; a modest retracement from the peak is present toward the end of the test.
+- **Overall trend:** Across the one-month test window, the equity curve exhibits a stepped
+  ("staircase") upward pattern without a sustained decline — extended consolidation (sideways)
+  phases are followed by pronounced breakout advances, consistent with the compounding growth from
+  $5,000 to $11,212 over the period.
+- **Balance–equity convergence:** The green (equity) and blue (balance) lines overlap almost
+  entirely throughout the test, indicating that the floating profit/loss amplitude of open
+  positions remained limited and that positions were closed relatively quickly — consistent with
+  the EA's early-exit and trailing/breakeven mechanisms.
+- **Drawdowns:** Periodic minor pullbacks are visible, most notably a short consolidation band in
+  the mid-section of the curve, but none interrupt the overall upward trajectory; a brief
+  retracement from the local peak is present near the end of the test.
+- **Acceleration phases:** Two distinct acceleration segments are visible — one roughly a third of
+  the way through the test and one toward the final quarter — where the slope of the curve steepens
+  noticeably before returning to a shallower, range-bound pace.
 
-**Methodological note:** The image provided does not include numerical performance metrics (win
-rate, profit factor, maximum drawdown percentage, total net profit, number of trades,
-Sharpe/Sortino ratio, etc.). To preserve the academic integrity of this document, these figures
-have not been estimated or fabricated. Once the full Strategy Tester report (HTML/PDF output, or
-the summary table from the "Results" tab) is provided, this section can be updated with concrete
-statistics.
+### 7.3 Interpretation
+
+A one-month return of +124.24% on $5,000 of initial capital under 1:15 leverage represents a
+substantial result by any conventional benchmark. Academically, this figure should be interpreted
+with caution for the following reasons:
+
+- **Sample size:** A single one-month test constitutes one realization of a stochastic process;
+  it does not, by itself, establish the strategy's expected return or its variance across
+  different market regimes.
+- **Leverage amplification:** At 1:15, both gains and losses are amplified proportionally; the
+  same equity curve shape at a lower leverage ratio would correspond to a materially smaller
+  absolute return, and vice versa for higher leverage.
+- **Missing risk metrics:** The supplied chart does not report maximum drawdown, win rate, profit
+  factor, or trade count. A high absolute return figure is not, on its own, informative about
+  risk-adjusted performance (e.g., return per unit of drawdown); these metrics are necessary before
+  the result can be considered statistically meaningful.
+
+Once the full Strategy Tester report (HTML/PDF output, or the summary table from the "Results"
+tab) is made available, this section can be extended with drawdown, win-rate, and risk-adjusted
+performance statistics.
 
 ---
 
