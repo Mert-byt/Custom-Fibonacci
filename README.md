@@ -15,7 +15,6 @@ Key Levels
 
 <img width="376" height="273" alt="image" src="https://github.com/user-attachments/assets/4cbae367-2037-4257-b2dd-7e2b24ba91c8" />
 <img width="376" height="273" alt="image" src="https://github.com/user-attachments/assets/56965471-eef4-48e4-933c-dfcfb39e45ff" />
-<img width="376" height="273" alt="Screenshot_2026-08-02_22-43-11" src="https://github.com/user-attachments/assets/2c275541-1cfa-445b-acb0-d69e0e170e8c" />
 
 
 
