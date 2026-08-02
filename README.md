@@ -1,7 +1,8 @@
 <img width="1346" height="676" alt="Screenshot_2026-08-01_16-07-41" src="https://github.com/user-attachments/assets/c6748199-b725-406f-a5ba-c586c8eec0f6" />
 
 
-Custom Fibonacci
+
+**Custom Fibonacci**
 
 A clean and precise open-source Pine Script indicator designed for traders who use ICT / Smart Money Concepts.
 This tool automatically plots a specialized Fibonacci set based on the most recent Pivot High (level 0) and the subsequent Pivot Low (level 1). The levels included are specifically chosen for liquidity sweeps, institutional accumulation zones, and high-probability extension targets commonly used in modern price action trading.
@@ -18,7 +19,7 @@ Key Levels
 
 
 
-Features
+**Features**
 
 Fully automatic detection of Pivot High → Pivot Low structure
 Clean horizontal lines with no labels for a professional chart appearance
@@ -26,14 +27,14 @@ Separate toggles for Negative levels, 0/1 levels, and Extension levels
 Customizable colors, line width, pivot sensitivity, and line extension length
 Lightweight and optimized for Pine Script v6
 
-How to Use ?
+**How to Use ?**
 
 Apply the indicator to your chart.
 Adjust the Pivot Length according to your timeframe (lower values for lower timeframes, higher values for higher timeframes).
 The indicator will automatically draw the custom Fibonacci once a valid High → Low structure is formed.
 Use the negative levels as potential liquidity / entry zones and the extension levels as take-profit targets after a confirmed market structure shift.
 
-Notes
+**Notes**
 
 This indicator is intended as a discretionary tool. It does not generate buy/sell signals. Always combine it with proper market structure, liquidity analysis, and risk management.
 Open-source and free to use, modify, and share
